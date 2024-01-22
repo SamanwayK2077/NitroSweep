@@ -89,13 +89,21 @@ class NitroSweep:
 
 if __name__ == "__main__":
     while True:
-        code_type = input(
-            f"{Fore.LIGHTMAGENTA_EX}[NitroSweep] Code Type (boost, classic): "
-        )
+        code_type=0
+        while code_type !="classic" and code_type!="boost":
+            code_type = input(
+                f"{Fore.LIGHTMAGENTA_EX}[NitroSweep] Code Type (boost, classic): ")
+            if  code_type !="classic" and code_type!="boost":
+                print(f"{Fore.LIGHTMAGENTA_EX}[NitroSweep] Please enter valid code type. ")
         prox=True
         scrape_proxy=True
-        codes = input(
-            f"{Fore.LIGHTMAGENTA_EX}[NitroSweep] Number of codes to sweep: "
-        )
+        codes=0
+        while codes==0:
+            try:
+                codes = int(input(
+                    f"{Fore.LIGHTMAGENTA_EX}[NitroSweep] Number of codes to sweep: "))
+            except ValueError:
+                print(f"{Fore.LIGHTMAGENTA_EX}[NitroSweep] Invalid number of codes to sweep.")
+                codes=0
         NitroSweep(code_type, prox, codes).generate(scrape=scrape_proxy)
         stime=time.time()
